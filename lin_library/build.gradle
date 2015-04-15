@@ -29,6 +29,8 @@ group = "com.linwoain.library"                                        // Maven G
 
 
 dependencies {
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.jiechic.library:xUtils:2.6.14'
 }
 
 
@@ -85,4 +87,19 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "Lin_library"    //发布到JCenter上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
 }
