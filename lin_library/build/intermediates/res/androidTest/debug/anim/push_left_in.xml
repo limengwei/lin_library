@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <translate
+            android:duration="600"
+            android:fromXDelta="100%"
+            android:toXDelta="0"/>
+</set><!-- From: file:/E:/Lin_Library/lin_library/src/main/res/anim/push_left_in.xml --><!-- From: file:/E:/Lin_Library/lin_library/build/intermediates/bundles/debug/res/anim/push_left_in.xml -->

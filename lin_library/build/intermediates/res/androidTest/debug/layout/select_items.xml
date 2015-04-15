@@ -1,0 +1,9 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:padding="10dp"
+    android:textColor="@color/black_text" />
+<!-- From: file:/E:/Lin_Library/lin_library/src/main/res/layout/select_items.xml --><!-- From: file:/E:/Lin_Library/lin_library/build/intermediates/bundles/debug/res/layout/select_items.xml -->
