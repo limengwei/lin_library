@@ -30,8 +30,8 @@ public class PackageUtil {
     /**
      * 获取清单文件中meta_data标签下自定义的键值对<br>
      * 在Application节点下
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/11/3 14:44
+     *@param key 要获取内容的键
+     * @return 获取到的值
      */
     public static String getMetaData(String key) {
         ApplicationInfo info1 = null;
@@ -87,10 +87,8 @@ public class PackageUtil {
     /**
      * 此方法描述的是：根据文件名获取保存到本地的地址
      *
-     * @param path
-     * @return
-     * @author linwoain
-     * @version 2014年7月11日 下午2:43:34
+     * @param path 传入的路径
+     * @return cache路径+传入的路径
      */
 
     public static String getpath(String path) {
@@ -108,7 +106,7 @@ public class PackageUtil {
     /**
      * 调用系统应用安装APK程序
      *
-     * @param path
+     * @param path apk文件的路径
      */
     public static void installApk(String path) {
 
@@ -136,8 +134,8 @@ public class PackageUtil {
 
     /**
      * 调用系统自带卸载API
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/12/10 8:56
+     *
+     * @param packageName 要卸载文件包名
      */
     public static void uninstall(String packageName) {
 
@@ -156,7 +154,10 @@ public class PackageUtil {
     }
 
 
-    /** 判断手机是否root，不弹出root请求框<br/> */
+    /**
+     * 判断手机是否root，不弹出root请求框
+     * @return 是否root
+     */
     public static boolean isRoot() {
         String binPath = "/system/bin/su";
         String xBinPath = "/system/xbin/su";
@@ -165,7 +166,7 @@ public class PackageUtil {
     }
 
     private static boolean isExecutable(String filePath) {
-        Process p = null;  
+        Process p = null;
         try {
             p = Runtime.getRuntime().exec("ls -l " + filePath);            // 获取返回内容
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));

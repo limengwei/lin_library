@@ -14,8 +14,6 @@ import com.google.gson.Gson;
 /**
  * 可以和字符串相互转换的对象，通过toBase64String和fromBase64方法
  *  
- * @author: linwoain   
- * @version: 2014年9月1日 下午2:22:32
  */
 @SuppressWarnings("serial")
 public class BaseBean implements Serializable {
@@ -23,9 +21,7 @@ public class BaseBean implements Serializable {
 
 	/**
 	 * 将当前对象转换为字符串
-	 * @author: linwoain  
-	 * @version: 2014年9月1日 下午2:20:46
-	 *
+	 *@return 转换后的字符串
 	 */
 	public String toBase64String() {
 		String text = "";
@@ -42,14 +38,14 @@ public class BaseBean implements Serializable {
 
 	/**
 	 * 将通过Base64编码的对象转换回来,失败返回null
-	 * @author linwoain  
-	 * @version 2014年9月1日 下午2:21:40
-	 *
+	 * @param base64Str 转换的字符串
+	 * @param <T> 类型
+	 * @return 对象
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends BaseBean> T  fromBase64(String base64) {
+	public static <T extends BaseBean> T  fromBase64(String base64Str) {
 		try {
-			ByteArrayInputStream bais = new ByteArrayInputStream(Base64.decode(base64.getBytes(), Base64.DEFAULT));
+			ByteArrayInputStream bais = new ByteArrayInputStream(Base64.decode(base64Str.getBytes(), Base64.DEFAULT));
 			ObjectInputStream ois = new ObjectInputStream(bais);
 			return  (T) ois.readObject();
 		} catch (Exception e) {
@@ -61,6 +57,6 @@ public class BaseBean implements Serializable {
     
     @Override
     public String toString(){
-        return (new Gson()).toJson(this).toString();
+        return (new Gson()).toJson(this);
     }
 }

@@ -22,7 +22,7 @@ import com.linwoain.library.R;
  * 下拉刷新控件
  * @author liux (http://my.oschina.net/liux)
  * @version 1.0
- * @created 2012-3-21
+ *
  */
 @SuppressLint("ClickableViewAccessibility")
 public class LinListView extends ListView implements OnScrollListener {  

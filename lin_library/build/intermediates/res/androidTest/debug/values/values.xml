@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/F:/git/lin_library/lin_library/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/E:/lin_library/lin_library/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <color name="black">#ff000000</color>
     <color name="black_text">#2c2c2c</color>

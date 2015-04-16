@@ -41,18 +41,14 @@ public class PopupUtil {
 	/**
 	 * 
 	 * 显示一个待选项的PopupWindow
-	 * 
-	 * @author linwoain
-	 * @version 2014年11月15日 上午9:26:35
-	 * @param context
-	 *            上下文
-	 * @param view
-	 * @param list
-	 * @param callback
+	 * @param context  上下文
+	 * @param view  显示在哪个view下放
+	 * @param strings 待显示的字符串列表
+	 * @param callback 回调
 	 */
 	@Deprecated
-	public static void showPopup(Context context, View view, List<String> list, final PositionClick callback) {
-		LLogUtils.i(list.size());
+	public static void showPopup(Context context, View view, List<String> strings, final PositionClick callback) {
+		LLogUtils.i(strings.size());
 		final PopupWindow popup = new PopupWindow();
 		ListView lv = new ListView(context);
 		lv.setPadding(5, 5, 5, 5);
@@ -68,7 +64,7 @@ public class PopupUtil {
 				}
 			}
 		});
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.select_items, list);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.select_items, strings);
 		lv.setAdapter(adapter);
 		lv.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT));
 		popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
@@ -79,11 +75,9 @@ public class PopupUtil {
 	/**
 	 * 显示一个动态Spinner，类似的选项框,Spinner控件必须是一个已存在的控件
 	 * 
-	 * @author linwoain
-	 * @version 2014年11月15日 上午9:28:37
-	 * @param spinner
-	 * @param list
-	 * @param callback
+	 * @param spinner 关联的spinner
+	 * @param list 字符串列表
+	 * @param callback 回调
 	 */
 	public static void showSpainner(Spinner spinner, List<String> list, final PositionClick callback) {
 		if (null == spinner || list == null) {
@@ -115,7 +109,7 @@ public class PopupUtil {
 		/**
 		 * 当某个条目被点击时的回调
 		 *
-		 * @param position
+		 * @param position 被点击的条目
 		 */
 		public void onItemClick(int position);
 

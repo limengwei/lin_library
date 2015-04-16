@@ -57,8 +57,6 @@ public class LinActivity extends Activity {
     /**
      * 设置全屏，在setContentView调用前使用
      *
-     * @author linwoain
-     * @version 2014年9月11日 下午12:11:22
      */
     public void setFullScreen() {
         setNoTitle();
@@ -109,32 +107,12 @@ public class LinActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
-    /**
-     * Toast显示msg
-     *
-     * @author: linwoain
-     * @version: 2014年8月25日 下午6:21:23
-     */
     public void showToast(String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * Toast显示id为stringId
-     *
-     * @author linwoain
-     * @version 2014年8月25日 下午6:21:23
-     */
     public void showToast(int stringId) {
         Toast.makeText(context, stringId, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * 设置是否在退出前打开侧边菜单栏
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2015/1/4 15:38
-     */
-    protected void setShowLeftWhenPressBack(boolean b) {
     }
 
     @Override
@@ -167,21 +145,11 @@ public class LinActivity extends Activity {
     /**
      * 设置是否允许双击后退键退出应用，默认为否
      *
-     * @param enable
+     * @param enable 是否
      */
 
     protected void setEnableDoubleClickBack(boolean enable) {
         enableDoubleClickBack = enable;
     }
 
-    /**
-     * 若需要左滑的话，在此处可生效
-     *
-     * @author snow0358530
-     */
-//    public void left(View v) {
-//        if (slider != null) {
-//            slider.toggleLeftDrawer();
-//        }
-//    }
 }

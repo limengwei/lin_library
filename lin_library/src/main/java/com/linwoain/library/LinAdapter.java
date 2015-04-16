@@ -1,8 +1,8 @@
 /**
- *知我者为我心忧，不知我者谓我何求！
- *linwoain@outlook.com
- *作者 linwoain
- *日期 2014/10/23 9:50
+ * 知我者为我心忧，不知我者谓我何求！
+ * linwoain@outlook.com
+ * 作者 linwoain
+ * 日期 2014/10/23 9:50
  */
 package com.linwoain.library;
 
@@ -27,9 +27,7 @@ public abstract class LinAdapter<T> extends BaseAdapter {
 
 
     /**
-     * LinAdapter<T>通用的构造方法
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/23 10:10
+     * LinAdapter通用的构造方法
      *
      * @param context 传入的上下文
      * @param beans   要显示的数据源封装好的列表
@@ -64,8 +62,6 @@ public abstract class LinAdapter<T> extends BaseAdapter {
 
     /**
      * Adapter中唯一需要实现的方法
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/23 9:58
      *
      * @param convertView 循环使用的view
      * @param parent      附加的view
@@ -76,8 +72,8 @@ public abstract class LinAdapter<T> extends BaseAdapter {
 
     /**
      * 添加一些条目到列表中
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/23 10:01
+     *
+     * @param lists 新增的条目
      */
     public void addLists(List<T> lists) {
         beans.addAll(lists);
@@ -86,8 +82,6 @@ public abstract class LinAdapter<T> extends BaseAdapter {
 
     /**
      * 清空所有条目
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/23 10:02
      */
     public void clearAll() {
         beans.clear();
@@ -96,8 +90,8 @@ public abstract class LinAdapter<T> extends BaseAdapter {
 
     /**
      * 清空并重新加载所有新传入的数据
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/23 10:05
+     *
+     * @param lists 重新加载lists
      */
     public void refresh(List<T> lists) {
         beans.clear();
@@ -108,8 +102,8 @@ public abstract class LinAdapter<T> extends BaseAdapter {
 
     /**
      * 添加一条新的条目
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/23 10:06
+     *
+     * @param item 新增的条目
      */
     public void add(T item) {
         beans.add(item);
@@ -125,7 +119,7 @@ public abstract class LinAdapter<T> extends BaseAdapter {
         @SuppressWarnings("unchecked")
         public static <K extends View> K get(View view, int id) {
             SparseArray<View> viewholder = (SparseArray<View>) view.getTag();
-            
+
             if (viewholder == null) {
                 viewholder = new SparseArray<View>();
                 view.setTag(viewholder);

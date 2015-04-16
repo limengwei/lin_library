@@ -71,7 +71,7 @@ public class ImageWithText extends LinearLayout {
 	/**
 	 * 设置文字
 	 * 
-	 * @param text
+	 * @param text 要设置的文字
 	 */
 	public void setText(String text) {
 		tv.setText(text);
@@ -80,7 +80,7 @@ public class ImageWithText extends LinearLayout {
 	/**
 	 * 设置imageview的图片
 	 * 
-	 * @param resId
+	 * @param resId 资源id
 	 */
 	public void setImageViewRes(int resId) {
 		iv.setImageResource(resId);
@@ -89,7 +89,7 @@ public class ImageWithText extends LinearLayout {
 	/**
 	 * 设置imageview的图片
 	 * 
-	 * @param bitmap
+	 * @param bitmap 位图
 	 */
 	public void setImageBitmap(Bitmap bitmap) {
 		iv.setImageBitmap(bitmap);

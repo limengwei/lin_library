@@ -32,8 +32,6 @@ public class NetWorkUtil {
 
 	/**
 	 * 获取当前网络状态 <br>
-	 * 作者:linwoain(linwoain@outlook.com) <br>
-	 * 日期:2014/10/22 16:25
 	 *
 	 * @return 各种状态值
 	 */
@@ -71,8 +69,6 @@ public class NetWorkUtil {
 	 * 获取wifi状态下ip地址 <br>
 	 * 需要权限 android.permission.ACCESS_NETWORK_STATE<br>
 	 * 与android.permission.ACCESS_WIFI_STATE <br>
-	 * 作者:linwoain(linwoain@outlook.com) <br>
-	 * 日期:2014/10/22 16:47
 	 *
 	 * @return 若当前工作在非wifi环境下则返回null
 	 */
@@ -84,8 +80,7 @@ public class NetWorkUtil {
 			int ipAddr = info.getIpAddress();
 			StringBuffer ipBuf = new StringBuffer();
 			ipBuf.append(ipAddr & 0xff).append('.').append((ipAddr >>>= 8) & 0xff).append('.').append((ipAddr >>>= 8) & 0xff).append('.').append((ipAddr >>>= 8) & 0xff);
-			String ipString = new String(ipBuf);
-			return ipString;
+			return new String(ipBuf);
 		} else {
 			return null;
 		}
@@ -93,9 +88,8 @@ public class NetWorkUtil {
 	}
 
 	/**
-	 * 网络是否可用 权限勿忘 <br>
-	 * 作者:linwoain(linwoain@outlook.com) <br>
-	 * 日期:2014/10/22 17:10
+	 * 网络是否可用 权限勿忘
+	 * @return 是否可用
 	 */
 	public static boolean isNetworkAvailable() {
 		ConnectivityManager connectivity = (ConnectivityManager) LApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -104,8 +98,8 @@ public class NetWorkUtil {
 		} else {
 			NetworkInfo[] info = connectivity.getAllNetworkInfo();
 			if (info != null) {
-				for (int i = 0; i < info.length; i++) {
-					if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+				for (NetworkInfo anInfo : info) {
+					if (anInfo.getState() == NetworkInfo.State.CONNECTED) {
 						return true;
 					}
 				}

@@ -31,31 +31,27 @@ public class PhoneUtil {
     /**
      * 获取手机号码
      * <br>需要权限android.permission.READ_PHONE_STATE
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/22 16:09
+     * @return 手机号码
      */
-    public static final String getPhoneNumber() {
+    public static  String getPhoneNumber() {
         return manager.getLine1Number();
     }
 
     /**
      * 获取设备id号码
      * <br>需要权限android.permission.READ_PHONE_STATE
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/22 16:10
+     * @return deviceId
      */
-    public static final String getDeviceId() {
-        getSimInfo();
+    public static  String getDeviceId() {
         return manager.getDeviceId();
     }
 
     /**
      * 获取SIM卡串号
      * <br>需要权限android.permission.READ_PHONE_STATE
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/22 16:13
+     * @return SIM卡串号
      */
-    public static final String getSimInfo() {
+    public static  String getSimInfo() {
 
         return manager.getSimSerialNumber();
     }
@@ -63,8 +59,7 @@ public class PhoneUtil {
     /**
      * 获取当前手机卡运营商名
      * <br>需要权限android.permission.READ_PHONE_STATE
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/22 16:28
+     * @return 运营商名称 中国移动、中国移动、中国电信
      */
     public String getProvidersName() {
         String ProvidersName = null;
@@ -85,18 +80,16 @@ public class PhoneUtil {
     /**
      * 获取IMSI号码
      * <br>需要权限android.permission.READ_PHONE_STATE
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/22 16:28
+     * @return IMSI号码
      */
-    public static final String getImsi() {
+    public static  String getImsi() {
 
         return manager.getSubscriberId();
     }
 
     /**
      * 获取手机UA信息
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/22 17:05
+     * @return UA字符串
      */
     public static String getUserAgent() {
         WebView w = new WebView(LApplication.getContext());

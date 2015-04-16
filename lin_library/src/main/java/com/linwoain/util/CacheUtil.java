@@ -1,14 +1,8 @@
-/**
- * 文件名：CacheUtil.java      
- * 版本信息： 1.0  
- * 日期：2014年9月24日   
- * 版权所有     
- */
-
 package com.linwoain.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import com.linwoain.bean.BaseBean;
 import com.linwoain.library.LApplication;
 
@@ -35,7 +29,7 @@ public class CacheUtil {
     private static SharedPreferences sp;
     private static boolean isInitBoolean;
     /**
-     * 数值类型的默认返回值，int、float、long<br><br/>
+     * 数值类型的默认返回值，int、float、long<br>
      * 默认为-5927
      */
     public static final int DEFAULT_INT = -5927;
@@ -44,8 +38,6 @@ public class CacheUtil {
      * 初始化方法,无须使用此方法，在静态代码块中已经初始化
      *
      * @param context
-     * @author linwoain
-     * @version 2014年9月24日 下午2:13:22
      */
     private static void initCache(Context context) {
         sp = context.getApplicationContext().getSharedPreferences("config", Context.MODE_PRIVATE);
@@ -55,9 +47,7 @@ public class CacheUtil {
     /**
      * 获取缓存工具的状态
      *
-     * @return
-     * @author linwoain
-     * @version 2014年9月24日 下午2:19:42
+     * @return 是否初始化完成
      */
     public static boolean isInit() {
         return isInitBoolean;
@@ -65,8 +55,9 @@ public class CacheUtil {
 
     /**
      * 获取一个值,若未找到，则返回空字符串
-     * <br> linwoain
-     * <br> 2014年9月24日 上午11:44:57
+     *
+     * @param key 要获取的值对应的键
+     * @return 要获取的值
      */
 
     public static String getString(String key) {
@@ -82,8 +73,6 @@ public class CacheUtil {
      *
      * @param key   要保存的键
      * @param value 要保存的值
-     * @author linwoain
-     * @version 2014年9月24日 上午11:51:21
      */
 
     public static void save(String key, Object value) {
@@ -102,17 +91,19 @@ public class CacheUtil {
             sp.edit().putLong(key, (Long) value).apply();
         } else if (value instanceof BaseBean) {
             sp.edit().putString(key, ((BaseBean) value).toBase64String()).apply();
-        }else if (value instanceof ArrayList) {
-			saveListString(key, (ArrayList<String>)value);
-		} 
+        } else if (value instanceof ArrayList) {
+            saveListString(key, (ArrayList<String>) value);
+        }
         LLogUtils.d("保存了一个键值对" + key + "=" + value + "--- 类型是：" + value.getClass().getSimpleName());
     }
 
 
     /**
-     * 删除list<String>中的一个值,若此list不存在，返回true
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/31 10:40
+     * 删除列表中的一个值,若此list不存在，返回true
+     *
+     * @param key         key
+     * @param tobeRemoved 要删除的值
+     * @return 是否移除成功
      */
     public static boolean removeItemFromListString(String key, String tobeRemoved) {
         List<String> lists = getStringList(key);
@@ -133,11 +124,11 @@ public class CacheUtil {
 
 
     /**
-    *向ListString中添加新项
-    *<br>作者:linwoain(linwoain@outlook.com)
-    *<br>日期:2014/10/31 10:51
-    * 
-    */
+     * 向ListString中添加新项
+     *
+     * @param key       键
+     * @param tobeAdded 值
+     */
     public static void addItemToListString(String key, String tobeAdded) {
 
         List<String> list = getStringList(key);
@@ -152,10 +143,8 @@ public class CacheUtil {
     /**
      * 无此键值对则返回defInt， defInt可修改，默认为-9527
      *
-     * @param key
-     * @return
-     * @author linwoain
-     * @version 2014年9月25日 上午10:11:19
+     * @param key 要获取的值得键
+     * @return 值 若不存在则返回-9527
      */
     public static int getInt(String key) {
         if (key == null) {
@@ -165,28 +154,19 @@ public class CacheUtil {
     }
 
 
-    /**
-     * 获取保存的list，值只能是<code>List<String></code>类型
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/31 10:23
-     */
+
     public static List<String> getStringList(String key) {
         if (key == null) {
             throw new RuntimeException("key 不能为null");
         }
         Set<String> set = sp.getStringSet(key, null);
         List<String> lists = new ArrayList<String>();
-        if (set!=null) {
+        if (set != null) {
             lists.addAll(set);
         }
         return lists;
     }
 
-    /**
-     * 保存一个List<String>
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/31 10:26
-     */
     public static void saveListString(String key, List<String> lists) {
         if (key == null) {
             throw new RuntimeException("key 不能为null");
@@ -194,16 +174,14 @@ public class CacheUtil {
 
         Set<String> set = new HashSet<String>();
         set.addAll(lists);
-        sp.edit().putStringSet(key, set).commit();
+        sp.edit().putStringSet(key, set).apply();
     }
 
     /**
      * 返回一个Long，无此键值对则返回defInt， defInt可修改，默认为-9527
      *
-     * @param key
-     * @return
-     * @author linwoain
-     * @version 2014年9月25日 上午10:05:32
+     * @param key 要获取的值得键
+     * @return 值 若不存在则返回-9527
      */
     public static long getLong(String key) {
         if (key == null) {
@@ -215,10 +193,8 @@ public class CacheUtil {
     /**
      * 返回一个float，无此键值对则返回 DEFAULT_INT
      *
-     * @param key
-     * @return
-     * @author linwoain
-     * @version 2014年9月25日 上午10:04:25
+     * @param key 要获取的值得键
+     * @return 值 若不存在则返回-9527
      */
     public static float getFloat(String key) {
         if (key == null) {
@@ -230,10 +206,8 @@ public class CacheUtil {
     /**
      * 若找不到此键值对将直接返回false
      *
-     * @param key
-     * @return
-     * @author linwoain
-     * @version 2014年9月25日 上午9:55:05
+     * @param key 要获取的值得键
+     * @return 值 若不存在则返回false
      */
     public static boolean getBoolean(String key) {
         if (key == null) {
@@ -244,12 +218,9 @@ public class CacheUtil {
 
     /**
      * 清除所有缓存
-     *
-     * @author linwoain
-     * @version 2014年9月24日 上午11:53:54
      */
     public static void clearAll() {
-        sp.edit().clear().commit();
+        sp.edit().clear().apply();
     }
 
     public static BaseBean getBaseBean(String key) {

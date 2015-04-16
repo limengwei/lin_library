@@ -1,8 +1,8 @@
 /**
- *知我者为我心忧，不知我者谓我何求！
- *linwoain@outlook.com
- *作者 linwoain
- *日期 2014/12/15 18:01
+ * 知我者为我心忧，不知我者谓我何求！
+ * linwoain@outlook.com
+ * 作者 linwoain
+ * 日期 2014/12/15 18:01
  */
 package com.linwoain.util;
 
@@ -18,9 +18,7 @@ public class GsonUtil {
     private static Gson gson;
 
     /**
-     * 获取一个Gson的实例
-     *
-     * @return
+     * @return gson instance
      */
     public static Gson getGson() {
         if (gson == null) {
@@ -30,27 +28,38 @@ public class GsonUtil {
     }
 
     /**
-     * 将json数组转化为列表
+     * 将一个复合json转为一个内含列表的对象
      *
-     * @param gsonStr
-     * @param t
-     * @return
+     * @param s   json字符串
+     * @param t   类型
+     * @param <T> 那个类
+     * @return T类型的对象
      */
 
-    public static <T> T get(String gsonStr, TypeToken<?> t) {
-        return getGson().fromJson(gsonStr, t.getType());
+    public static <T> T get(String s, TypeToken<?> t) {
+        return getGson().fromJson(s, t.getType());
     }
 
     /**
      * 将一个json对象转换为java对象
      *
-     * @param gsonstr
-     * @param classOfT
-     * @return
+     * @param s        待转换的值
+     * @param classOfT 要转换的类型
+     * @param <T>      类型
+     * @return 转换后java对象
      */
-    public static <T> T get(String gsonstr, Class<T> classOfT) {
+    public static <T> T get(String s, Class<T> classOfT) {
 
-        return getGson().fromJson(gsonstr, classOfT);
+        return getGson().fromJson(s, classOfT);
     }
 
+    /**
+     * 将对象中字段转为json字符串
+     *
+     * @param o 一个对象
+     * @return json字符串
+     */
+    public static String toGson(Object o) {
+        return getGson().toJson(o);
+    }
 }

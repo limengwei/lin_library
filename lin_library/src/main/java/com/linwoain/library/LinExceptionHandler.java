@@ -17,8 +17,8 @@ import com.linwoain.util.PhoneUtil;
 
 /**
  * 继承此类并重写其doSomeThingWhenFC方法
- * <br/>并在主线程中使用Thread.setDefaultUncaughtExceptionHandler()方法
- * <br/>并将当前类的对象传入，在程序异常崩溃时将调用doSomeThingWhenFC此方法
+ * 并在主线程中使用Thread.setDefaultUncaughtExceptionHandler()方法
+ * 并将当前类的对象传入，在程序异常崩溃时将调用doSomeThingWhenFC此方法
  */
 public abstract class LinExceptionHandler implements Thread.UncaughtExceptionHandler {
     private Thread.UncaughtExceptionHandler defaultUEH;
@@ -56,10 +56,9 @@ public abstract class LinExceptionHandler implements Thread.UncaughtExceptionHan
     }
 
     /**
-     * 实现此方法在程序异常终止时调用<br/>
+     * 实现此方法在程序异常终止时调用
      * 当前错误信息已保存到字段stacktrace中
-     * <br>作者:linwoain(linwoain@outlook.com)
-     * <br>日期:2014/10/25 15:16
+
      */
     public abstract void doSomeThingWhenFC();
 
