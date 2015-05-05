@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -81,11 +82,12 @@ public class ScreenUtil {
     }
 
     /**
-     * 设置为4.4的沉浸式状态栏
-     *
+     * 设置为4.4的沉浸式状态栏<br>
+     *在1.0.1中废弃，使用{@link ScreenUtil#setchenjin(Activity)}  替代
      * @param activity 当前Activity对象
      * @param root     当前布局文件中的根view，此view背景色应该与状态栏背景色相同
      */
+    @Deprecated
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static void setchenjin(Activity activity, View root) {
 
@@ -95,9 +97,9 @@ public class ScreenUtil {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             // 透明导航栏
             // activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            if (root != null) {
-                root.setPadding(0, ScreenUtil.getStatusBarHeight(), 0, 0);
-            }
+            if (root == null)
+                root = ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
+            root.setPadding(0, ScreenUtil.getStatusBarHeight(), 0, 0);
 
         }
     }
@@ -125,6 +127,11 @@ public class ScreenUtil {
         return sbar;
     }
 
+    /**
+     * 设置当前activity为沉浸式，状态栏颜色与布局文件中根节点的颜色相同
+     * @param act activity
+     */
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static void setchenjin(Activity act) {
         setchenjin(act, null);
     }

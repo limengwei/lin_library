@@ -1,9 +1,9 @@
 /**
- * 文件名：BaseActivity.java      
- * 版本信息： 1.0  
- * 日期：2014年7月7日   
- * Copyright 足下 Corporation 2014    
- * 版权所有     
+ * 文件名：BaseActivity.java
+ * 版本信息： 1.0
+ * 日期：2014年7月7日
+ * Copyright 足下 Corporation 2014
+ * 版权所有
  */
 
 package com.linwoain.ui;
@@ -14,9 +14,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+
 import com.linwoain.library.LApplication;
 import com.linwoain.util.ScreenUtil;
 
@@ -44,6 +46,7 @@ public class LinActivity extends Activity {
     private boolean isBack = false;
     private long downTime;
     private boolean enableDoubleClickBack = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,21 +67,23 @@ public class LinActivity extends Activity {
     }
 
     /**
-     * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台
-     *
+     * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台<br>
+     *在1.0.1中废弃 使用{@link LinActivity#setChenjin()}代替
      * @param root 布局中的根节点
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
-	public void setChenjin(View root) {
+    @Deprecated
+    public void setChenjin(View root) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //透明导航栏
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            if (root != null) {
-                root.setPadding(0, ScreenUtil.getStatusBarHeight(), 0, 0);
+            if (root == null) {
+                root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
             }
+            root.setPadding(0, ScreenUtil.getStatusBarHeight(), 0, 0);
 
 
         }
@@ -92,10 +97,12 @@ public class LinActivity extends Activity {
     }
 
     /**
-     * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台
+     * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台<br>
+     *在1.0.1中废弃 使用{@link LinActivity#setChenjin()}代替
      *
      * @param rootId 布局中的根节点id
      */
+    @Deprecated
     public void setChenjin(int rootId) {
         setChenjin(findViewById(rootId));
     }

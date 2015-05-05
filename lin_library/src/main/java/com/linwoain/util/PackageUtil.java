@@ -51,8 +51,7 @@ public class PackageUtil {
      * @return 版本名
      */
     public static String getVersionName() {
-        String version = getPackageInfo().versionName;
-        return version;
+        return getPackageInfo().versionName;
     }
 
     /**
@@ -61,8 +60,7 @@ public class PackageUtil {
      * @return 版本号
      */
     public static int getVersionCode() {
-        int version = getPackageInfo().versionCode;
-        return version;
+        return getPackageInfo().versionCode;
     }
 
     /**
@@ -94,9 +92,9 @@ public class PackageUtil {
     public static String getpath(String path) {
         Context context = LApplication.getContext();
         boolean is = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-        if (is && context.getExternalCacheDir().canWrite()) {
+        if (is && context.getExternalCacheDir().canWrite())
             return context.getExternalCacheDir().getPath() + "/" + path;
-        } else {
+        else {
             return context.getCacheDir().getPath() + path;
         }
 
