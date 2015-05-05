@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import com.linwoain.library.LApplication;
 
 /**
- * 获取屏幕相关参数
+ * 获取屏幕相关参数并设置相关样式，如全屏、沉浸式...
  */
 public class ScreenUtil {
 
@@ -83,7 +83,9 @@ public class ScreenUtil {
 
     /**
      * 设置为4.4的沉浸式状态栏<br>
-     *在1.0.1中废弃，使用{@link ScreenUtil#setchenjin(Activity)}  替代
+     * 在1.0.1中废弃，使用{@link ScreenUtil#setchenjin(Activity)}  替代<br>
+     * 需在{@link Activity#setContentView(int)}后调用
+     *
      * @param activity 当前Activity对象
      * @param root     当前布局文件中的根view，此view背景色应该与状态栏背景色相同
      */
@@ -97,9 +99,10 @@ public class ScreenUtil {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             // 透明导航栏
             // activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            if (root == null)
-                root = ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
-            root.setPadding(0, ScreenUtil.getStatusBarHeight(), 0, 0);
+            if (root != null) {
+                root.setPadding(0, ScreenUtil.getStatusBarHeight(), 0, 0);
+            }
+
 
         }
     }
@@ -129,25 +132,27 @@ public class ScreenUtil {
 
     /**
      * 设置当前activity为沉浸式，状态栏颜色与布局文件中根节点的颜色相同
+     * <br>需在{@link Activity#setContentView(int)}后调用
+     *
      * @param act activity
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static void setchenjin(Activity act) {
-        setchenjin(act, null);
-    }
-
-    public static void setChenjinOrFullScreen(Activity context, View v) {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setchenjin(context, v);
-        } else {
-            context.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            context.getWindow().setFlags(
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            act.getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            View root = ((ViewGroup) act.findViewById(android.R.id.content)).getChildAt(0);
+            root.setPadding(0, ScreenUtil.getStatusBarHeight(), 0, 0);
+
         }
     }
 
+
+    /**
+     * 设置全屏，需在{@link Activity#setContentView(int)}或{@link Activity#setContentView(View)}前调用
+     *
+     * @param act 要设置的activity
+     */
     public static void setFullScreen(Activity act) {
         act.requestWindowFeature(Window.FEATURE_NO_TITLE);
         act.getWindow().setFlags(
@@ -156,8 +161,17 @@ public class ScreenUtil {
 
     }
 
+    /**
+     * 设置为无ActionBar样式
+     * @param act 要设置的activity
+     */
     public static void setNoActionBar(Activity act) {
         act.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     }
+
+    private ScreenUtil() {
+
+    }
+
 }
