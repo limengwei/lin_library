@@ -17,9 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.linwoain.library.LApplication;
+import com.linwoain.library.LViewHelper;
 import com.linwoain.util.ScreenUtil;
 
 /**
@@ -88,6 +90,33 @@ public class LinActivity extends Activity {
 
         }
     }
+    FrameLayout frameLayout;
+    protected void setChenjinContentView(int layoutId) {
+
+      setChenjinContentView(LViewHelper.getView(layoutId,context));
+    }
+    protected void setChenjinContentView(View root) {
+        setNoTitle();
+        frameLayout = new FrameLayout(context);
+        frameLayout.addView(root);
+        setContentView(frameLayout);
+    }
+
+
+
+    /**
+     * 设置沉浸式状态栏的颜色<br>
+     *  必需在使用{@link LinActivity#setChenjinContentView(int)}或者{@link LinActivity#setChenjinContentView(View)}方法之后
+     * @param color 要设置的颜色
+     */
+    public void setChenjinColor(int color) {
+        if (frameLayout == null) {
+            throw new RuntimeException("use setChenjinContentView() inflate layout ??");
+        }
+        setChenjin();
+        frameLayout.setBackgroundColor(color);
+    }
+
 
     /**
      * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台,<br>若顶部为图片或者无背景时使用此方法
