@@ -1,15 +1,26 @@
-﻿#继承LinActivity实现沉浸式状态栏
-
-1、在Android Studio中增加依赖
+﻿#两句话实现沉浸式（API>=19)
+一、使用gradle 加载依赖
 ```xml
-compile 'com.linwoain.library:lin_library:1.0.3'
+compile 'com.linwoain.library:lin_library:1.0.4'
 ```
-2、将自己的Activity继承自LinActivity并修改填充布局方式并设置状态栏颜色
+或者下载相应文件夹下的java文件
+
+二、使用Translucent类实现
+
 
 ```java
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+    Translucent translucent;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-    setChenjinContentView(R.layout.activity_second);//填充布局
-    setChenjinColor(Color.RED);//设置状态栏颜色
-}
+        translucent = new Translucent(this).inject();
+        translucent.setStatusBarColor(Color.RED);
+
+    }
+
+    public void change(View view) {
+        translucent.setStatusBarColor(Color.YELLOW);
+    }
+```

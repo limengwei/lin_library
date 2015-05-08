@@ -3,7 +3,11 @@ package com.linwoain.widget;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.linwoain.library.R;
@@ -45,6 +49,12 @@ public class LoadingDialog extends AlertDialog {
         if (text != null && tv != null) {
             tv.setText(text);
         }
+//        FrameLayout view = (FrameLayout) findViewById(android.R.id.content);
+//        FrameLayout.LayoutParams parame= (FrameLayout.LayoutParams) view.getLayoutParams();
+//        parame.height= ViewGroup.LayoutParams.WRAP_CONTENT;
+//        parame.width= ViewGroup.LayoutParams.WRAP_CONTENT;
+//        view.setLayoutParams(parame);
+
     }
 
     /**

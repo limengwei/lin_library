@@ -61,80 +61,28 @@ public class LinActivity extends Activity {
 
     /**
      * 设置全屏，在setContentView调用前使用
-     *
      */
     public void setFullScreen() {
         setNoTitle();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    /**
-     * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台<br>
-     *在1.0.1中废弃 使用{@link LinActivity#setChenjin()}代替
-     * @param root 布局中的根节点
-     */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    @Deprecated
-    public void setChenjin(View root) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //透明状态栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            if (root == null) {
-                root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-            }
-            root.setPadding(0, ScreenUtil.getStatusBarHeight(), 0, 0);
-
-
-        }
-    }
-    FrameLayout frameLayout;
-    protected void setChenjinContentView(int layoutId) {
-
-      setChenjinContentView(LViewHelper.getView(layoutId,context));
-    }
-    protected void setChenjinContentView(View root) {
-        setNoTitle();
-        frameLayout = new FrameLayout(context);
-        frameLayout.addView(root);
-        setContentView(frameLayout);
-    }
-
-
-
-    /**
-     * 设置沉浸式状态栏的颜色<br>
-     *  必需在使用{@link LinActivity#setChenjinContentView(int)}或者{@link LinActivity#setChenjinContentView(View)}方法之后
-     * @param color 要设置的颜色
-     */
     public void setChenjinColor(int color) {
-        if (frameLayout == null) {
-            throw new RuntimeException("use setChenjinContentView() inflate layout ??");
+        if (translucent==null) {
+            throw new RuntimeException("used  setChenjin() before!!");
         }
-        setChenjin();
-        frameLayout.setBackgroundColor(color);
     }
 
+    Translucent translucent;
 
     /**
-     * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台,<br>若顶部为图片或者无背景时使用此方法
+     * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台
      */
     public void setChenjin() {
-        setChenjin(null);
+        translucent = new Translucent(this).inject();
     }
 
-    /**
-     * 设置为4.4的沉浸式状态栏,仅在4.4之后的系统中启用，不影响其他平台<br>
-     *在1.0.1中废弃 使用{@link LinActivity#setChenjin()}代替
-     *
-     * @param rootId 布局中的根节点id
-     */
-    @Deprecated
-    public void setChenjin(int rootId) {
-        setChenjin(findViewById(rootId));
-    }
 
     /**
      * 设置无标题栏

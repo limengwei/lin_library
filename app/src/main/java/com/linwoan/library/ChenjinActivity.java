@@ -7,9 +7,8 @@ import android.view.View;
 import com.linwoain.ui.LinActivity;
 
 /**
- *沉浸式状态栏demo,不兼容ActionBar<br>
+ *沉浸式状态栏demo<br>
  * 1.继承LinActivity<br>
- * 2.使用{@link LinActivity#setChenjinContentView(View)}或者{@link LinActivity#setContentView(int)}填充布局<br>
  * 3.设置状态栏颜色<br>
  */
 public class ChenjinActivity extends LinActivity {
@@ -18,7 +17,8 @@ public class ChenjinActivity extends LinActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setChenjinContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_second);
+        setChenjin();
         setChenjinColor(Color.RED);
     }
 
