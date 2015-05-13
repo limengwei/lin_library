@@ -64,19 +64,23 @@ public class Translucent {
      * @return 当前对象
      */
     public Translucent inject() {
-        ViewGroup vg = (ViewGroup) activity.findViewById(android.R.id.content);
-        View layoutView = vg.getChildAt(0);
-        vg.removeView(layoutView);
-        setTranslucent(layoutView);
-        return this;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			ViewGroup vg = (ViewGroup) activity.findViewById(android.R.id.content);
+			View layoutView = vg.getChildAt(0);
+			vg.removeView(layoutView);
+			setTranslucent(layoutView);
+		}
+		return this;
     }
 
     public Translucent setStatusBarColor(int color) {
-        if (view == null) {
-            throw new RuntimeException("use inject() ??");
-        }
-        view.setBackgroundColor(color);
-        return this;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			if (view == null) {
+				throw new RuntimeException("use inject() ??");
+			}
+			view.setBackgroundColor(color);
+		}
+		return this;
     }
 
 

@@ -1,7 +1,7 @@
 ﻿#两句话实现沉浸式（API>=19)
 一、使用gradle 加载依赖
 ```xml
-compile 'com.linwoain.library:lin_library:1.0.4'
+compile 'com.linwoain.library:lin_library:1.0.5'
 ```
 或者下载相应文件夹下的java文件
 
